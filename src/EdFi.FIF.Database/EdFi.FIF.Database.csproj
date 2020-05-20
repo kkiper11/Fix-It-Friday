@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+      <None Remove="Scripts\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <EmbeddedResource Include="Scripts\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DbUp" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
