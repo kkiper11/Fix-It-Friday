@@ -30,6 +30,9 @@ CREATE TABLE fif.ContactPerson (
     PhoneNumber nvarchar(24) NULL,
     PrimaryEmailAddress nvarchar(128) NULL,
     IsPrimaryContact bit NULL,
+    PreferredContactMethod varchar(128) NULL,
+    BestTimeToContact varchar(60) NULL,
+    ContactNotes varchar(max) NULL,
     CONSTRAINT PK_UniqueKey PRIMARY KEY (UniqueKey)
 );
 
