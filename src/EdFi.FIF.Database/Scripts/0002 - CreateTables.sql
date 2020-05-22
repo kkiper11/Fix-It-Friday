@@ -42,14 +42,27 @@ CREATE TABLE fif.StudentContact (
     ContactKey nvarchar(65) NOT NULL,
     StudentSchoolKey nvarchar(45) NOT NULL,
     CONSTRAINT PK_UniqueKey_StudentSchoolKey PRIMARY KEY (ContactKey, StudentSchoolKey),
-    CONSTRAINT FK_ContactPerson_ContactKey_UniqueKey FOREIGN KEY (ContactKey) REFERENCES fif.ContactPerson (UniqueKey),
-    CONSTRAINT FK_ContactPerson_StudentSchoolKey_StudentSchoolKey FOREIGN KEY (StudentSchoolKey) REFERENCES fif.StudentSchool (StudentSchoolKey)
+    CONSTRAINT FK_StudentContact_ContactKey_UniqueKey FOREIGN KEY (ContactKey) REFERENCES fif.ContactPerson (UniqueKey),
+    CONSTRAINT FK_StudentContact_StudentSchoolKey_StudentSchoolKey FOREIGN KEY (StudentSchoolKey) REFERENCES fif.StudentSchool (StudentSchoolKey)
 );
+
+GO
+
+CREATE TABLE fif.Section (
+    SectionKey nvarchar(128) NOT NULL,
+    SchoolKey nvarchar(32) NULL,
+    LocalCourseCode nvarchar(60) NULL,
+    SessionName nvarchar(60) NULL,
+    SectionIdentifier nvarchar(255) NULL,
+    SchoolYear smallint NOT NULL,
+    CONSTRAINT PK_SectionSectionKey PRIMARY KEY (SectionKey)
+)
 
 GO
 
 CREATE TABLE fif.StudentSection (
     StudentSectionKey nvarchar(60) NOT NULL,
+    StudentSchoolKey nvarchar(64) NOT NULL,
     StudentKey nvarchar(32) NOT NULL,
     SectionKey nvarchar(60) NULL,
     LocalCourseCode nvarchar(60) NULL,
@@ -61,9 +74,30 @@ CREATE TABLE fif.StudentSection (
     SchoolKey nvarchar(30) NULL,
     SchoolYear nvarchar(30) NULL,
     CONSTRAINT PK_StudentSectionKey PRIMARY KEY (StudentSectionKey)
-
-    --- Since StudentKey is not a primary key in fif.StudentSchool and it doesn't have any sort of unique index, we can't create this reference:
-    --CONSTRAINT FK_StudentSection_StudentKey_StudentKey FOREIGN KEY (StudentKey,SchoolKey,SchoolYear) REFERENCES fif.StudentSchool (StudentKey,SchoolKey,SchoolYear)
 );
+
+GO
+
+CREATE TABLE fif.Staff (
+    StaffKey int NOT NULL,
+    PersonalTitlePrefix nvarchar(30) NULL,
+    FirstName nvarchar(75) NULL,
+    MiddleName nvarchar(75) NULL,
+    LastSurname nvarchar(75) NULL,
+    StaffUniqueId nvarchar(32) NOT NULL,
+    CONSTRAINT PK_StaffStaffKey PRIMARY KEY (StaffKey)
+)
+
+GO
+
+CREATE TABLE fif.StaffSectionAssociation (
+    StaffKey int NOT NULL,
+    SectionKey nvarchar(128) NOT NULL,
+    BeginDate datetime2 NOT NULL,
+    EndDate datetime2 NOT NULL,
+    CONSTRAINT PK_StaffSectionAssociationStaffKeySectionKey PRIMARY KEY (StaffKey,SectionKey),
+    CONSTRAINT FK_StaffSectionAssociation_StaffKey_StaffKey FOREIGN KEY (StaffKey) REFERENCES fif.Staff (StaffKey),
+    CONSTRAINT FK_StaffSectionAssociation_SectionKey_SectionKey FOREIGN KEY (SectionKey) REFERENCES fif.Section (SectionKey)
+)
 
 GO
