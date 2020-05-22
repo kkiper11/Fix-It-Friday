@@ -2,7 +2,7 @@
 {
     public class StudentContact
     {
-        public string StudentKey { get; set; }
+        public string StudentSchoolKey { get; set; }
 
         public string ContactKey { get; set; }
     }
