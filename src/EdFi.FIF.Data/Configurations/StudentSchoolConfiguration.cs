@@ -9,7 +9,7 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<StudentSchool> builder)
         {
             builder.HasKey(s => s.StudentKey);
-            builder.ToTable("Clients", "identity");
+            builder.ToTable("StudentSchool");
 
             builder.Property(s => s.StudentSchoolKey).HasColumnName("StudentSchoolKey".ToLower());
             builder.Property(s => s.StudentKey).HasColumnName("StudentKey".ToLower());
