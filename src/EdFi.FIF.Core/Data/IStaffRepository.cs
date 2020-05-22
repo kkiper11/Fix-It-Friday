@@ -9,4 +9,4 @@ namespace EdFi.FIF.Core.Data
         Task<List<Staff>> All();
         Task<Staff> Get(int staffKey);
     }
-}
+}   

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EdFi.FIF.Core.Data;
@@ -24,14 +25,14 @@ namespace EdFi.FIF.Data.Repositories
             return await _db.StudentSections.AsNoTracking().FirstOrDefaultAsync(p => p.StudentSectionKey == studentSectionKey);
         }
 
-        public async Task<StudentSection> GetByStudent(string studentKey)
+        public async Task<List<StudentSection>> GetByStudent(string studentKey)
         {
-            return await _db.StudentSections.AsNoTracking().FirstOrDefaultAsync(p => p.StudentSectionKey == studentKey);
+            return await _db.StudentSections.AsNoTracking().Where(p => p.StudentSectionKey == studentKey).ToListAsync();
         }
 
-        public async Task<StudentSection> GetBySection(string sectionKey)
+        public async Task<List<StudentSection>> GetBySection(string sectionKey)
         {
-            return await _db.StudentSections.AsNoTracking().FirstOrDefaultAsync(p => p.SectionKey == sectionKey);
+            return await _db.StudentSections.AsNoTracking().Where(p => p.SectionKey == sectionKey).ToListAsync();
         }
     }
 }

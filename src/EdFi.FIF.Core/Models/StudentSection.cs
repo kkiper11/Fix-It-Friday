@@ -3,6 +3,7 @@
     public class StudentSection
     {
         public string StudentSectionKey { get; set; }
+        public string StudentSchoolKey { get; set; }
         public string StudentKey { get; set; }
         public string SectionKey { get; set; }
         public string LocalCourseCode { get; set; }

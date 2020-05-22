@@ -94,7 +94,7 @@ CREATE TABLE fif.StaffSectionAssociation (
     StaffKey int NOT NULL,
     SectionKey nvarchar(128) NOT NULL,
     BeginDate datetime2 NOT NULL,
-    EndDate datetime2 NOT NULL,
+    EndDate datetime2 NULL,
     CONSTRAINT PK_StaffSectionAssociationStaffKeySectionKey PRIMARY KEY (StaffKey,SectionKey),
     CONSTRAINT FK_StaffSectionAssociation_StaffKey_StaffKey FOREIGN KEY (StaffKey) REFERENCES fif.Staff (StaffKey),
     CONSTRAINT FK_StaffSectionAssociation_SectionKey_SectionKey FOREIGN KEY (SectionKey) REFERENCES fif.Section (SectionKey)

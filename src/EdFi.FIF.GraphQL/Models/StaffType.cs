@@ -1,6 +1,7 @@
 ﻿using EdFi.FIF.Core.Models;
 using EdFi.FIF.GraphQL.Helpers;
 using GraphQL.Types;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace EdFi.FIF.GraphQL.Models
 {
@@ -14,6 +15,10 @@ namespace EdFi.FIF.GraphQL.Models
             Field("middlename", x => x.MiddleName);
             Field("lastsurname", x => x.LastSurname);
             Field("staffuniqueid", x => x.StaffUniqueId);
+            Field<ListGraphType<StaffSectionAssociationType>>("sections",
+                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
+                resolve: context => contextServiceLocator.StaffSectionAssociationRepository.GetByStaff(context.Source.StaffKey), description: "Staff section association");
+            
         }
     }
 }

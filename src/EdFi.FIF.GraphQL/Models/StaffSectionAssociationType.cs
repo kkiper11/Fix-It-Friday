@@ -8,10 +8,9 @@ namespace EdFi.FIF.GraphQL.Models
     {
         public StaffSectionAssociationType(ContextServiceLocator contextServiceLocator)
         {
-            Field("staffkey", x => x.StaffKey);
-            Field("sectionkey", x => x.SectionKey);
-            Field<StringGraphType>("begindate", resolve: context => context.Source.BeginDate);
-            Field<StringGraphType>("enddate", resolve: context => context.Source.EndDate);
+            Field<SectionType>("section",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "sectionkey" }),
+                resolve: context => contextServiceLocator.SectionRepository.Get(context.Source.SectionKey), description: "Section");
         }
     }
 }

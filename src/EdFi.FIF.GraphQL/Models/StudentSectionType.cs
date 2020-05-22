@@ -9,6 +9,7 @@ namespace EdFi.FIF.GraphQL.Models
         public StudentSectionType(ContextServiceLocator contextServiceLocator)
         {
             Field("studentsectionkey", x => x.StudentSectionKey);
+            Field("studentschoolkey", x => x.StudentSchoolKey);
             Field("studentkey", x => x.StudentKey);
             Field("sectionkey", x => x.SectionKey);
             Field("localcoursecode", x => x.LocalCourseCode);
@@ -19,6 +20,9 @@ namespace EdFi.FIF.GraphQL.Models
             Field("studentsectionenddatekey", x => x.StudentSectionEndDateKey);
             Field("schoolkey", x => x.SchoolKey);
             Field("schoolyear", x => x.SchoolYear);
+            Field<StudentSchoolType>("student",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "studentschoolkey" }),
+                resolve: context => contextServiceLocator.StudentSchoolRepository.Get(context.Source.StudentSchoolKey), description: "Student");
         }
     }
 }

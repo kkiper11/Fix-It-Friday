@@ -11,13 +11,18 @@ namespace EdFi.FIF.GraphQL.Models
                 "staff",
                 resolve: (context) => contextServiceLocator.StaffRepository.All()
             );
-            Field<ListGraphType<StudentSchoolType>>(
+            Field<StaffType>(
                 "staffsections",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "staffkey" }),
+                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
                 resolve: (context) => contextServiceLocator.StaffRepository.Get(context.GetArgument<int>("staffkey"))
             );
+            Field<SectionType>(
+                "sectionstudents",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "sectionkey" }),
+                resolve: (context) => contextServiceLocator.SectionRepository.Get(context.GetArgument<string>("sectionkey"))
+            );
             Field<ListGraphType<StudentSchoolType>>(
-                "studentschoollist",
+                "students",
                 resolve: (context) => contextServiceLocator.StudentSchoolRepository.All()
             );
 

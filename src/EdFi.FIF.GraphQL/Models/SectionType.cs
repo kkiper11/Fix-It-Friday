@@ -14,6 +14,9 @@ namespace EdFi.FIF.GraphQL.Models
             Field("sessionname", x => x.SessionName);
             Field("sectionidentifier", x => x.SectionIdentifier);
             Field("schoolyear", x => x.SchoolYear);
+            Field<ListGraphType<StudentSectionType>>("students",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "sectionkey" }),
+                resolve: context => contextServiceLocator.StudentSectionRepository.GetBySection(context.Source.SectionKey), description: "Section");
         }
     }
 }

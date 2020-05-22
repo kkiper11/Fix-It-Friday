@@ -1,4 +1,6 @@
-﻿namespace EdFi.FIF.Core.Models
+﻿using System;
+
+namespace EdFi.FIF.Core.Models
 {
     public class Section
     {
@@ -7,6 +9,6 @@
         public string LocalCourseCode { get; set; }
         public string SessionName { get; set; }
         public string SectionIdentifier { get; set; }
-        public int SchoolYear { get; set; }
+        public Int16 SchoolYear { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace EdFi.FIF.Core.Data
     public interface IStaffSectionAssociationRepository
     {
         Task<List<StaffSectionAssociation>> All();
-        Task<StaffSectionAssociation> GetByStaff(int staffKey);
-        Task<StaffSectionAssociation> GetBySection(string sectionKey);
+        Task<List<StaffSectionAssociation>> GetByStaff(int staffKey);
+        Task<List<StaffSectionAssociation>> GetBySection(string sectionKey);
     }
 }
