@@ -1,9 +1,7 @@
-import ApolloClient from "apollo-boost";
+import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({
   uri: 'https://localhost:5001',
 });
 
-export {
-  client
-}
+export default client;
