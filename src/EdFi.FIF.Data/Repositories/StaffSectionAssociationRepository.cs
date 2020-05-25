@@ -28,7 +28,7 @@ namespace EdFi.FIF.Data.Repositories
 
         public async Task<List<StaffSectionAssociation>> GetByStaff(int staffKey)
         {
-            return await _db.StaffSectionAssociations.AsNoTracking().Where(p => p.StaffKey == staffKey).ToListAsync(); ;
+            return await _db.StaffSectionAssociations.AsNoTracking().Where(p => p.StaffKey == staffKey).ToListAsync();
         }
     }
 }

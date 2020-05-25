@@ -2,6 +2,7 @@
 using DbUp.Engine;
 using System;
 using System.Reflection;
+// ReSharper disable IdentifierTypo
 
 namespace EdFi.FIF.Database
 {

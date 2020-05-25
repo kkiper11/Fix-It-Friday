@@ -6,6 +6,7 @@ namespace EdFi.FIF.Core.Data
 {
     public interface IStudentSectionRepository
     {
+        Task<List<StudentSection>> All();
         Task<StudentSection> Get(string studentSectionKey);
         Task<List<StudentSection>> GetByStudent(string studentKey);
         Task<List<StudentSection>> GetBySection(string sectionKey);

@@ -10,7 +10,7 @@ namespace EdFi.FIF.Data.Configurations
         {
             builder.HasKey(s => s.StudentSchoolKey);
             builder.ToTable("StudentContact".ToLower());
-            builder.Property(s => s.StudentSchoolKey).HasColumnName("StudentKey".ToLower());
+            builder.Property(s => s.StudentSchoolKey).HasColumnName("StudentSchoolKey".ToLower());
             builder.Property(s => s.ContactKey).HasColumnName("ContactKey".ToLower());
         }
     }

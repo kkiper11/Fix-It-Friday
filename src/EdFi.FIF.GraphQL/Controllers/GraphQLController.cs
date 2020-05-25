@@ -7,6 +7,7 @@ using GraphQL;
 using GraphQL.Types;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+// ReSharper disable InconsistentNaming
 
 namespace EdFi.FIF.GraphQL.Controllers
 {

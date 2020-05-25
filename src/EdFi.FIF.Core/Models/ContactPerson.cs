@@ -14,7 +14,7 @@
         public string PostalCode { get; set; }
         public string PhoneNumber { get; set; }
         public string PrimaryEmailAddress { get; set; }
-        public bool? IsPrimaryContact { get; set; }
+        public bool IsPrimaryContact { get; set; }
         public string PreferredContactMethod { get; set; }
         public string BestTimeToContact { get; set; }
         public string ContactNotes { get; set; }

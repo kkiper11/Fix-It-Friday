@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+// ReSharper disable InconsistentNaming
 
 namespace EdFi.FIF.GraphQL.Models
 {

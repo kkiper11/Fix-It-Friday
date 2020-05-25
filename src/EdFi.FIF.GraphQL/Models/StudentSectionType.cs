@@ -1,6 +1,7 @@
 ﻿using EdFi.FIF.Core.Models;
 using EdFi.FIF.GraphQL.Helpers;
 using GraphQL.Types;
+// ReSharper disable VirtualMemberCallInConstructor
 
 namespace EdFi.FIF.GraphQL.Models
 {

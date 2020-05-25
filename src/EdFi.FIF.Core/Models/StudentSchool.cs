@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EdFi.FIF.Core.Models
+﻿namespace EdFi.FIF.Core.Models
 {
     public class StudentSchool
     {

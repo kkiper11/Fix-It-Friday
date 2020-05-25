@@ -8,8 +8,9 @@ namespace EdFi.FIF.GraphQL.Models
     {
         public StudentContactType(ContextServiceLocator contextServiceLocator)
         {
-            Field("contactkey", x => x.ContactKey);
-            Field("studentschoolkey", x => x.StudentSchoolKey);
+            Field<ContactPersonType>("contact",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "contactkey" }),
+                resolve: context => contextServiceLocator.ContactPersonRepository.Get(context.Source.ContactKey), description: "Contact");
         }
     }
 }

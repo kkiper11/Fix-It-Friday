@@ -1,6 +1,7 @@
 ﻿using GraphQL.Types;
 using GraphQL.Utilities;
 using System;
+// ReSharper disable InconsistentNaming
 
 namespace EdFi.FIF.GraphQL.Models
 {

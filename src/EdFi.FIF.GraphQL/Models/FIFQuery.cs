@@ -1,5 +1,6 @@
 ﻿using EdFi.FIF.GraphQL.Helpers;
 using GraphQL.Types;
+// ReSharper disable InconsistentNaming
 
 namespace EdFi.FIF.GraphQL.Models
 {
@@ -11,21 +12,23 @@ namespace EdFi.FIF.GraphQL.Models
                 "staff",
                 resolve: (context) => contextServiceLocator.StaffRepository.All()
             );
-            Field<StaffType>(
-                "staffsections",
-                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
-                resolve: (context) => contextServiceLocator.StaffRepository.Get(context.GetArgument<int>("staffkey"))
-            );
-            Field<SectionType>(
-                "sectionstudents",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "sectionkey" }),
-                resolve: (context) => contextServiceLocator.SectionRepository.Get(context.GetArgument<string>("sectionkey"))
-            );
+
             Field<ListGraphType<StudentSchoolType>>(
                 "students",
                 resolve: (context) => contextServiceLocator.StudentSchoolRepository.All()
             );
 
+            Field<StaffType>(
+                "sectionsbystaff",
+                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
+                resolve: (context) => contextServiceLocator.StaffRepository.Get(context.GetArgument<int>("staffkey"))
+            );
+
+            Field<ListGraphType<StudentSectionType>>(
+                "studentsbysection",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "sectionkey" }),
+                resolve: (context) => contextServiceLocator.StudentSectionRepository.GetBySection(context.GetArgument<string>("sectionkey"))
+            );
         }
     }
 }

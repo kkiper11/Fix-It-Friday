@@ -1,6 +1,7 @@
 ﻿using EdFi.FIF.Core.Models;
 using EdFi.FIF.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
+// ReSharper disable InconsistentNaming
 
 namespace EdFi.FIF.Data
 {
