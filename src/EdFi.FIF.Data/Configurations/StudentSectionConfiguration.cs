@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EdFi.FIF.Data.Configurations
 {
-    class StudentSectionConfiguration : IEntityTypeConfiguration<StudentSection>
+    public class StudentSectionConfiguration : IEntityTypeConfiguration<StudentSection>
     {
         public void Configure(EntityTypeBuilder<StudentSection> builder)
         {
-            builder.HasKey(s => s.StudentKey);
+            builder.HasKey(s => s.StudentSectionKey);
             builder.ToTable("StudentSection".ToLower());
             builder.Property(s => s.StudentSectionKey).HasColumnName("StudentSectionKey".ToLower());
             builder.Property(s => s.StudentKey).HasColumnName("StudentKey".ToLower());

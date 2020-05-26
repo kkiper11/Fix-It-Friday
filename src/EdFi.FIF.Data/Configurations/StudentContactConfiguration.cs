@@ -14,6 +14,7 @@ namespace EdFi.FIF.Data.Configurations
             builder.Property(s => s.ContactPersonKey).HasColumnName("ContactKey".ToLower());
 
             builder.HasOne(s => s.ContactPerson).WithMany(s => s.StudentContacts).HasForeignKey(s => s.ContactPersonKey);
+
             builder.HasOne(s => s.StudentSchool).WithMany(s => s.StudentContacts).HasForeignKey(s => s.StudentSchoolKey);
         }
     }

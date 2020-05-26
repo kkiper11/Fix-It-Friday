@@ -50,6 +50,18 @@ namespace EdFi.FIF.Data.Tests.Repositories
         }
 
         [Test]
+        public void Get_staff_by_key_returns_null_when_it_does_not_exist()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var _repository = new StaffRepository(context);
+                var result = _repository.Get(999).Result;
+
+                result.ShouldBeNull();
+            }
+        }
+
+        [Test]
         public void Get_staff_returns_staff()
         {
             using (var context = new FIFContext(ContextOptions))

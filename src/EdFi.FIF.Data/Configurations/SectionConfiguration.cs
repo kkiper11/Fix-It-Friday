@@ -18,8 +18,6 @@ namespace EdFi.FIF.Data.Configurations
             builder.Property(s => s.SchoolYear).HasColumnName("SchoolYear".ToLower());
 
             builder.HasMany(s => s.StaffSectionAssociations).WithOne(s => s.Section).HasForeignKey(s => s.SectionKey);
-
-            builder.HasMany(s => s.StudentSections).WithOne(s => s.Section).HasForeignKey(s => s.SectionKey);
         }
     }
 }

@@ -96,6 +96,18 @@ namespace EdFi.FIF.Data.Tests.Repositories
         }
 
         [Test]
+        public void Get_StudentSchool_by_studentSchoolKey_returns_null_when_it_does_not_exist()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var _repository = new StudentSchoolRepository(context);
+                var result = _repository.Get("1-999").Result;
+
+                result.ShouldBeNull();
+            }
+        }
+
+        [Test]
         public void Get_StudentSchool_by_studentKey_returns_StudentSchool()
         {
             using (var context = new FIFContext(ContextOptions))

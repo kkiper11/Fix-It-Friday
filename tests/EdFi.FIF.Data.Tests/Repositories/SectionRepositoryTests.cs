@@ -51,6 +51,18 @@ namespace EdFi.FIF.Data.Tests.Repositories
         }
 
         [Test]
+        public void Get_staff_by_key_returns_null_when_it_does_not_exist()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var _repository = new SectionRepository(context);
+                var result = _repository.Get("999").Result;
+
+                result.ShouldBeNull();
+            }
+        }
+
+        [Test]
         public void Get_staff_returns_staff()
         {
             using (var context = new FIFContext(ContextOptions))
@@ -85,7 +97,5 @@ namespace EdFi.FIF.Data.Tests.Repositories
                             () => result.ElementAt(2).SchoolYear.ShouldBe<Int16>(2012));
             }
         }
-
-
     }
 }

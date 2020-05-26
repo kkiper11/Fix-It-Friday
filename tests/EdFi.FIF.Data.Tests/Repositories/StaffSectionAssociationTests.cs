@@ -33,7 +33,7 @@ namespace EdFi.FIF.Data.Tests.Repositories
         }
 
         [Test]
-        public void Get_staffSectionAssociationMMMM()
+        public void Get_staffSectionAssociation()
         {
             using (var context = new FIFContext(ContextOptions))
             {
@@ -81,30 +81,6 @@ namespace EdFi.FIF.Data.Tests.Repositories
                             () => result.ElementAt(3).StaffKey.ShouldBe(2),
                             () => result.ElementAt(3).BeginDate.ShouldBe(new DateTime(2012, 01, 01)),
                             () => result.ElementAt(3).EndDate.ShouldNotBeNull());
-            }
-        }
-
-        [Test]
-        public void Get_staffSectionAssociation_by_section_returns_staffSectionAssociation()
-        {
-            using (var context = new FIFContext(ContextOptions))
-            {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.GetBySection("2").Result;
-
-                result.Count.ShouldBe(2);
-
-                result.ShouldSatisfyAllConditions(
-                    () => result.ElementAt(0).SectionKey.ShouldBe("2"),
-                            () => result.ElementAt(0).StaffKey.ShouldBe(1),
-                            () => result.ElementAt(0).BeginDate.ShouldBe(new DateTime(2012, 01, 01)),
-                            () => result.ElementAt(0).EndDate.ShouldBeNull());
-
-                result.ShouldSatisfyAllConditions(
-                    () => result.ElementAt(1).SectionKey.ShouldBe("2"),
-                            () => result.ElementAt(1).StaffKey.ShouldBe(2),
-                            () => result.ElementAt(1).BeginDate.ShouldBe(new DateTime(2012, 01, 01)),
-                            () => result.ElementAt(1).EndDate.ShouldBeNull());
             }
         }
 

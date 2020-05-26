@@ -15,6 +15,7 @@ namespace EdFi.FIF.Data.Repositories
         {
             _db = db;
         }
+
         public async Task<List<StudentSection>> All()
         {
             return await _db.StudentSections.AsNoTracking().ToListAsync();
@@ -27,7 +28,7 @@ namespace EdFi.FIF.Data.Repositories
 
         public async Task<List<StudentSection>> GetByStudent(string studentKey)
         {
-            return await _db.StudentSections.AsNoTracking().Where(p => p.StudentSectionKey == studentKey).ToListAsync();
+            return await _db.StudentSections.AsNoTracking().Where(p => p.StudentSchoolKey == studentKey).ToListAsync();
         }
 
         public async Task<List<StudentSection>> GetBySection(string sectionKey)
