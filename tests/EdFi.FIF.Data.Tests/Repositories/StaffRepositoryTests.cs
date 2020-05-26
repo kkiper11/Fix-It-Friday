@@ -1,0 +1,80 @@
+﻿using EdFi.FIF.Data.Repositories;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using NUnit.Framework;
+using Shouldly;
+using System.Data.Common;
+using System.Linq;
+
+namespace EdFi.FIF.Data.Tests.Repositories
+{
+    public class StaffRepositoryTests : FIFRepositoryTest
+    {
+        private readonly DbConnection _connection;
+
+        public StaffRepositoryTests()
+        : base(
+            new DbContextOptionsBuilder<FIFContext>()
+                .UseSqlite(CreateInMemoryDatabase())
+                .Options)
+        {
+            _connection = RelationalOptionsExtension.Extract(ContextOptions).Connection;
+        }
+
+        private static DbConnection CreateInMemoryDatabase()
+        {
+            var connection = new SqliteConnection("Filename=:memory:");
+
+            connection.Open();
+
+            return connection;
+        }
+
+        [Test]
+        public void Get_staff_by_key_returns_staff_when_it_exists()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var _repository = new StaffRepository(context);
+                var result = _repository.Get(1).Result;
+
+                result.ShouldSatisfyAllConditions(
+                    () => result.StaffKey.ShouldBe(1),
+                            () => result.PersonalTitlePrefix.ShouldBe("Sr."),
+                            () => result.FirstName.ShouldBe("Joe"),
+                            () => result.MiddleName.ShouldBe("J."),
+                            () => result.LastSurname.ShouldBe("Doe"),
+                            () => result.StaffUniqueId.ShouldBe("1"));
+            }
+        }
+
+        [Test]
+        public void Get_staff_returns_staff()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var _repository = new StaffRepository(context);
+                var result = _repository.All().Result;
+
+                result.Count.ShouldBe(2);
+
+                result.ShouldSatisfyAllConditions(
+                    () => result.ElementAt(0).StaffKey.ShouldBe(1),
+                            () => result.ElementAt(0).PersonalTitlePrefix.ShouldBe("Sr."),
+                            () => result.ElementAt(0).FirstName.ShouldBe("Joe"),
+                            () => result.ElementAt(0).MiddleName.ShouldBe("J."),
+                            () => result.ElementAt(0).LastSurname.ShouldBe("Doe"),
+                            () => result.ElementAt(0).StaffUniqueId.ShouldBe("1"));
+
+                result.ShouldSatisfyAllConditions(
+                    () => result.ElementAt(1).StaffKey.ShouldBe(2),
+                        () => result.ElementAt(1).PersonalTitlePrefix.ShouldBe("Sr."),
+                        () => result.ElementAt(1).FirstName.ShouldBe("Cody"),
+                        () => result.ElementAt(1).MiddleName.ShouldBe("C."),
+                        () => result.ElementAt(1).LastSurname.ShouldBe("Smith"),
+                        () => result.ElementAt(1).StaffUniqueId.ShouldBe("2"));
+            }
+        }
+    }
+}

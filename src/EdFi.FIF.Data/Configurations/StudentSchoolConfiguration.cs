@@ -23,6 +23,10 @@ namespace EdFi.FIF.Data.Configurations
             builder.Property(s => s.LimitedEnglishProficiency).HasColumnName("LimitedEnglishProficiency".ToLower());
             builder.Property(s => s.IsHispanic).HasColumnName("IsHispanic".ToLower());
             builder.Property(s => s.Sex).HasColumnName("Sex".ToLower());
+
+            builder.HasMany(s => s.StudentContacts).WithOne(s => s.StudentSchool).HasForeignKey(s => s.StudentSchoolKey);
+
+            builder.HasMany(s => s.StudentSections).WithOne(s => s.StudentSchool).HasForeignKey(s => s.StudentSchoolKey);
         }
     }
 }

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.FIF.Database", "EdFi.F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.FIF.Data", "EdFi.FIF.Data\EdFi.FIF.Data.csproj", "{49853517-0F64-4F99-9F00-E04426045547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.FIF.GraphQL", "EdFi.FIF.GraphQL\EdFi.FIF.GraphQL.csproj", "{88275DCC-F0E1-48F7-88B5-D11703632EB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.FIF.GraphQL", "EdFi.FIF.GraphQL\EdFi.FIF.GraphQL.csproj", "{88275DCC-F0E1-48F7-88B5-D11703632EB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdFi.FIF.Data.Tests", "..\tests\EdFi.FIF.Data.Tests\EdFi.FIF.Data.Tests.csproj", "{6EC5AA74-1786-41C0-951F-039DFD5F43A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{88275DCC-F0E1-48F7-88B5-D11703632EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88275DCC-F0E1-48F7-88B5-D11703632EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88275DCC-F0E1-48F7-88B5-D11703632EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC5AA74-1786-41C0-951F-039DFD5F43A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC5AA74-1786-41C0-951F-039DFD5F43A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC5AA74-1786-41C0-951F-039DFD5F43A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC5AA74-1786-41C0-951F-039DFD5F43A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
