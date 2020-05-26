@@ -111,6 +111,25 @@ namespace EdFi.FIF.Data.Tests
                     }
                 };
 
+                var studentContacts = new List<StudentContact>()
+                {
+                    new StudentContact()
+                    {
+                        StudentSchoolKey = "1-1",
+                        ContactPersonKey = "1"
+                    },
+                    new StudentContact()
+                    {
+                        StudentSchoolKey = "1-1",
+                        ContactPersonKey = "2"
+                    },
+                    new StudentContact()
+                    {
+                        StudentSchoolKey = "2-1",
+                        ContactPersonKey = "2"
+                    }
+                };
+
                 var staff = new List<Staff>()
                 {
                     new Staff()
@@ -238,6 +257,7 @@ namespace EdFi.FIF.Data.Tests
 
                 context.AddRange(contactPeople);
                 context.AddRange(studentSchools);
+                context.AddRange(studentContacts);
                 context.AddRange(sections);
                 context.AddRange(staff);
                 context.AddRange(staffSectionAssociation);

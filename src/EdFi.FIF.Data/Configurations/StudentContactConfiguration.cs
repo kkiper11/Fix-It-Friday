@@ -8,7 +8,7 @@ namespace EdFi.FIF.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<StudentContact> builder)
         {
-            builder.HasKey(s => s.StudentSchoolKey);
+            builder.HasKey(s => new { s.StudentSchoolKey, s.ContactPersonKey });
             builder.ToTable("StudentContact".ToLower());
             builder.Property(s => s.StudentSchoolKey).HasColumnName("StudentSchoolKey".ToLower());
             builder.Property(s => s.ContactPersonKey).HasColumnName("ContactKey".ToLower());
