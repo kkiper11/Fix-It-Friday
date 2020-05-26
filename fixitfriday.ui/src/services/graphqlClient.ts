@@ -1,7 +1,10 @@
-import ApolloClient from 'apollo-boost';
+import ApolloClient, { HttpLink } from 'apollo-boost';
 
 const client = new ApolloClient({
-  uri: 'https://localhost:5001/GraphQL',
+  uri: 'http://localhost:52972/GraphQL',
+  fetchOptions: {
+    mode: 'no-cors',
+  } as HttpLink.Options,
 });
 
 export default client;

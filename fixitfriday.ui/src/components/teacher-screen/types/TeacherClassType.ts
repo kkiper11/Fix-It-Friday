@@ -1,4 +1,6 @@
 export type TeacherClassType = {
-  className: string;
-  classId: string;
+  sectionkey: string;
+  localcoursecode: string;
+  sessionname: string;
+  schoolyear: number;
 };

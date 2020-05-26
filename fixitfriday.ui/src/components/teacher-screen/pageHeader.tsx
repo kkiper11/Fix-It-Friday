@@ -13,8 +13,8 @@ type PageHeaderProps = {
 
 const PageHeader: React.FunctionComponent<PageHeaderProps> = ({ TeacherName, TeacherClass, onClassChange }) => {
   const Options = TeacherClass.map((teacherClass) => (
-    <option value={teacherClass.classId} key={teacherClass.classId}>
-      {teacherClass.className}
+    <option value={teacherClass.sectionkey} key={teacherClass.sectionkey}>
+      {teacherClass.schoolyear} - {teacherClass.sessionname}
     </option>
   ));
 

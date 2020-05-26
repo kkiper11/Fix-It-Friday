@@ -1,3 +1,22 @@
-const MainPageQuery = 'query';
+import gql from 'graphql-tag';
 
-export default MainPageQuery;
+const GET_TEACHER_NAME_AND_SECTIONS = gql`
+  query($StaffKey: Int) {
+    sectionsbystaff(staffkey: $StaffKey) {
+      staffkey
+      firstname
+      middlename
+      lastsurname
+      sections {
+        section {
+          sectionkey
+          localcoursecode
+          sessionname
+          schoolyear
+        }
+      }
+    }
+  }
+`;
+
+export default GET_TEACHER_NAME_AND_SECTIONS;
