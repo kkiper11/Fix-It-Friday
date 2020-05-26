@@ -21,7 +21,7 @@ namespace EdFi.FIF.Data.Repositories
         }
         public async Task<StudentSchool> Get(string studentSchoolKey)
         {
-            return await _db.Students.AsNoTracking().FirstOrDefaultAsync(p => p.StudentKey == studentSchoolKey);
+            return await _db.Students.AsNoTracking().FirstOrDefaultAsync(p => p.StudentSchoolKey == studentSchoolKey);
         }
         public async Task<StudentSchool> GetByStudent(string studentKey)
         {

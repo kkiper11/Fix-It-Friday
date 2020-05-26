@@ -23,6 +23,8 @@ namespace EdFi.FIF.Data.Configurations
             builder.Property(s => s.PhoneNumber).HasColumnName("PhoneNumber".ToLower());
             builder.Property(s => s.PrimaryEmailAddress).HasColumnName("PrimaryEmailAddress".ToLower());
             builder.Property(s => s.IsPrimaryContact).HasColumnName("IsPrimaryContact".ToLower());
+
+            builder.HasMany(s => s.StudentContacts).WithOne(s => s.ContactPerson).HasForeignKey(s => s.ContactPersonKey);
         }
     }
 }

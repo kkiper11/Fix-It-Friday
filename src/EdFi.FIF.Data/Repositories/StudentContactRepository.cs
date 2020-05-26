@@ -21,7 +21,7 @@ namespace EdFi.FIF.Data.Repositories
         }
         public async Task<StudentContact> Get(string studentKey, string contactKey)
         {
-            return await _db.StudentContacts.AsNoTracking().FirstOrDefaultAsync(p => p.StudentSchoolKey == studentKey && p.ContactKey == contactKey);
+            return await _db.StudentContacts.AsNoTracking().FirstOrDefaultAsync(p => p.StudentSchoolKey == studentKey && p.ContactPersonKey == contactKey);
         }
         public async Task<List<StudentContact>> GetByStudent(string studentKey)
         {
@@ -29,7 +29,7 @@ namespace EdFi.FIF.Data.Repositories
         }
         public async Task<List<StudentContact>> GetByContact(string contactKey)
         {
-            return await _db.StudentContacts.AsNoTracking().Where(p => p.ContactKey == contactKey).ToListAsync();
+            return await _db.StudentContacts.AsNoTracking().Where(p => p.ContactPersonKey == contactKey).ToListAsync();
         }
     }
 }

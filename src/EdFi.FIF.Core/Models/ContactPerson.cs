@@ -1,4 +1,6 @@
-﻿namespace EdFi.FIF.Core.Models
+﻿using System.Collections.Generic;
+
+namespace EdFi.FIF.Core.Models
 {
     public class ContactPerson
     {
@@ -18,5 +20,6 @@
         public string PreferredContactMethod { get; set; }
         public string BestTimeToContact { get; set; }
         public string ContactNotes { get; set; }
+        public ICollection<StudentContact> StudentContacts { get; set; }
     }
 }

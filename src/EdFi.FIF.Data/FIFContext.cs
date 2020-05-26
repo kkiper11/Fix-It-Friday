@@ -21,6 +21,8 @@ namespace EdFi.FIF.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasDefaultSchema("fif");
 
             modelBuilder.ApplyConfiguration(new ContactPersonConfiguration());

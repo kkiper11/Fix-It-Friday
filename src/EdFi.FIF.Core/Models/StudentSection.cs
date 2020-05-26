@@ -14,6 +14,7 @@
         public string StudentSectionEndDateKey { get; set; }
         public string SchoolKey { get; set; }
         public string SchoolYear { get; set; }
-
+        public StudentSchool StudentSchool { get; set; }
+        public Section Section { get; set; }
     }
 }

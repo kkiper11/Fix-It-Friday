@@ -1,4 +1,6 @@
-﻿namespace EdFi.FIF.Core.Models
+﻿using System.Collections.Generic;
+
+namespace EdFi.FIF.Core.Models
 {
     public class Staff
     {
@@ -8,6 +10,7 @@
         public string MiddleName { get; set; }
         public string LastSurname { get; set; }
         public string StaffUniqueId { get; set; }
+        public ICollection<StaffSectionAssociation> StaffSectionAssociations { get; set; }
 
     }
 }

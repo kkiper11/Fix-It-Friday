@@ -1,4 +1,6 @@
-﻿namespace EdFi.FIF.Core.Models
+﻿using System.Collections.Generic;
+
+namespace EdFi.FIF.Core.Models
 {
     public class StudentSchool
     {
@@ -14,5 +16,7 @@
         public string LimitedEnglishProficiency { get; set; }
         public bool IsHispanic { get; set; }
         public string Sex { get; set; }
+        public ICollection<StudentContact> StudentContacts { get; set; }
+        public ICollection<StudentSection> StudentSections { get; set; }
     }
 }
