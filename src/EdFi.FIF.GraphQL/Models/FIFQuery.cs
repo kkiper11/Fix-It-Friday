@@ -18,6 +18,18 @@ namespace EdFi.FIF.GraphQL.Models
                 resolve: (context) => contextServiceLocator.StudentSchoolRepository.All()
             );
 
+            Field<StudentSchoolType>(
+                "student",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "studentschoolkey" }),
+                resolve: (context) => contextServiceLocator.StudentSchoolRepository.Get(context.GetArgument<string>("studentschoolkey"))
+            );
+
+            Field<ListGraphType<ContactPersonType>>(
+                "contactperson",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "uniquekey" }),
+                resolve: (context) => contextServiceLocator.ContactPersonRepository.Get(context.GetArgument<string>("uniquekey"))
+            );
+
             Field<StaffType>(
                 "sectionsbystaff",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
