@@ -1,0 +1,91 @@
+﻿using EdFi.FIF.Data.Repositories;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using NUnit.Framework;
+using Shouldly;
+using System;
+using System.Data.Common;
+using System.Linq;
+
+namespace EdFi.FIF.Data.Tests.Repositories
+{
+    public class SectionRepositoryTests : FIFRepositoryTest
+    {
+        private readonly DbConnection _connection;
+
+        public SectionRepositoryTests()
+        : base(
+            new DbContextOptionsBuilder<FIFContext>()
+                .UseSqlite(CreateInMemoryDatabase())
+                .Options)
+        {
+            _connection = RelationalOptionsExtension.Extract(ContextOptions).Connection;
+        }
+
+        private static DbConnection CreateInMemoryDatabase()
+        {
+            var connection = new SqliteConnection("Filename=:memory:");
+
+            connection.Open();
+
+            return connection;
+        }
+
+        [Test]
+        public void Get_staff_by_key_returns_staff_when_it_exists()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var _repository = new SectionRepository(context);
+                var result = _repository.Get("1").Result;
+
+                result.ShouldSatisfyAllConditions(
+                    () => result.SectionKey.ShouldBe("1"),
+                            () => result.SchoolKey.ShouldBe("1"),
+                            () => result.LocalCourseCode.ShouldBe("ACER08"),
+                            () => result.SessionName.ShouldBe("Traditional"),
+                            () => result.SectionIdentifier.ShouldBe("21855"),
+                            () => result.SchoolYear.ShouldBe<Int16>(2012));
+            }
+        }
+
+        [Test]
+        public void Get_staff_returns_staff()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var _repository = new SectionRepository(context);
+                var result = _repository.All().Result;
+
+                result.Count.ShouldBe(3);
+
+                result.ShouldSatisfyAllConditions(
+                    () => result.ElementAt(0).SectionKey.ShouldBe("1"),
+                            () => result.ElementAt(0).SchoolKey.ShouldBe("1"),
+                            () => result.ElementAt(0).LocalCourseCode.ShouldBe("ACER08"),
+                            () => result.ElementAt(0).SessionName.ShouldBe("Traditional"),
+                            () => result.ElementAt(0).SectionIdentifier.ShouldBe("21855"),
+                            () => result.ElementAt(0).SchoolYear.ShouldBe<Int16>(2012));
+
+                result.ShouldSatisfyAllConditions(
+                    () => result.ElementAt(1).SectionKey.ShouldBe("2"),
+                            () => result.ElementAt(1).SchoolKey.ShouldBe("1"),
+                            () => result.ElementAt(1).LocalCourseCode.ShouldBe("ACER08"),
+                            () => result.ElementAt(1).SessionName.ShouldBe("Traditional-Spring Semester"),
+                            () => result.ElementAt(1).SectionIdentifier.ShouldBe("21856"),
+                            () => result.ElementAt(1).SchoolYear.ShouldBe<Int16>(2012));
+
+                result.ShouldSatisfyAllConditions(
+                    () => result.ElementAt(2).SectionKey.ShouldBe("3"),
+                            () => result.ElementAt(2).SchoolKey.ShouldBe("2"),
+                            () => result.ElementAt(2).LocalCourseCode.ShouldBe("ACER09"),
+                            () => result.ElementAt(2).SessionName.ShouldBe("Traditional"),
+                            () => result.ElementAt(2).SectionIdentifier.ShouldBe("21857"),
+                            () => result.ElementAt(2).SchoolYear.ShouldBe<Int16>(2012));
+            }
+        }
+
+
+    }
+}
