@@ -11,6 +11,7 @@ namespace EdFi.FIF.Data.Configurations
             builder.HasKey(s => s.StudentSectionKey);
             builder.ToTable("StudentSection".ToLower());
             builder.Property(s => s.StudentSectionKey).HasColumnName("StudentSectionKey".ToLower());
+            builder.Property(s => s.StudentSchoolKey).HasColumnName("StudentSchoolKey".ToLower());
             builder.Property(s => s.StudentKey).HasColumnName("StudentKey".ToLower());
             builder.Property(s => s.SectionKey).HasColumnName("SectionKey".ToLower());
             builder.Property(s => s.LocalCourseCode).HasColumnName("LocalCourseCode".ToLower());

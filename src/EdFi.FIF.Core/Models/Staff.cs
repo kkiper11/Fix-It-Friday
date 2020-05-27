@@ -10,7 +10,5 @@ namespace EdFi.FIF.Core.Models
         public string MiddleName { get; set; }
         public string LastSurname { get; set; }
         public string StaffUniqueId { get; set; }
-        public ICollection<StaffSectionAssociation> StaffSectionAssociations { get; set; }
-
     }
 }

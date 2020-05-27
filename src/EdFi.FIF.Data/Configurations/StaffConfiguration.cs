@@ -16,8 +16,6 @@ namespace EdFi.FIF.Data.Configurations
             builder.Property(s => s.MiddleName).HasColumnName("MiddleName".ToLower());
             builder.Property(s => s.LastSurname).HasColumnName("LastSurname".ToLower());
             builder.Property(s => s.StaffUniqueId).HasColumnName("StaffUniqueId".ToLower());
-
-            builder.HasMany(s => s.StaffSectionAssociations).WithOne(s => s.Staff).HasForeignKey(s => s.StaffKey);
         }
     }
 }

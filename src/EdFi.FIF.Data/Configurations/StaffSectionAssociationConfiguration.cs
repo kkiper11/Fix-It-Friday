@@ -14,10 +14,6 @@ namespace EdFi.FIF.Data.Configurations
             builder.Property(s => s.SectionKey).HasColumnName("SectionKey".ToLower());
             builder.Property(s => s.BeginDate).HasColumnName("BeginDate".ToLower());
             builder.Property(s => s.EndDate).HasColumnName("EndDate".ToLower());
-
-            builder.HasOne(s => s.Staff).WithMany(s => s.StaffSectionAssociations).HasForeignKey(s => s.StaffKey);
-
-            builder.HasOne(s => s.Section).WithMany(s => s.StaffSectionAssociations).HasForeignKey(s => s.SectionKey);
         }
     }
 }
