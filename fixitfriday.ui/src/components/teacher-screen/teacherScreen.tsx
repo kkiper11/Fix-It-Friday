@@ -17,8 +17,7 @@ const TeacherScreen: React.FunctionComponent = () => {
   } else if (headerError) {
     Header = <p>An error has ocurred processing the request.</p>;
   } else {
-    const teacherName =
-      headerData.sectionsbystaff.firstname + headerData.sectionsbystaff.middlename + headerData.sectionsbystaff.lastsurname;
+    const teacherName = `${headerData.sectionsbystaff.firstname} ${headerData.sectionsbystaff.middlename} ${headerData.sectionsbystaff.lastsurname}`;
     Header = <PageHeader TeacherClass={headerData.sectionsbystaff.sections} TeacherName={teacherName} />;
   }
 
