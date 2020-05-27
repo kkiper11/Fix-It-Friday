@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using NUnit.Framework;
 using Shouldly;
+using System;
 using System.Data.Common;
 using System.Linq;
 
 namespace EdFi.FIF.Data.Tests.Repositories
 {
-    public class StaffRepositoryTests : FIFRepositoryTest
+    public class StaffRepositoryTests : FIFRepositoryTest, IDisposable
     {
         private readonly DbConnection _connection;
 
@@ -31,13 +32,15 @@ namespace EdFi.FIF.Data.Tests.Repositories
             return connection;
         }
 
+        public void Dispose() => _connection.Dispose();
+
         [Test]
         public void Get_staff_by_key_returns_staff_when_it_exists()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffRepository(context);
-                var result = _repository.Get(1).Result;
+                var repository = new StaffRepository(context);
+                var result = repository.Get(1).Result;
 
                 result.ShouldSatisfyAllConditions(
                     () => result.StaffKey.ShouldBe(1),
@@ -54,8 +57,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffRepository(context);
-                var result = _repository.Get(999).Result;
+                var repository = new StaffRepository(context);
+                var result = repository.Get(999).Result;
 
                 result.ShouldBeNull();
             }
@@ -66,8 +69,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffRepository(context);
-                var result = _repository.All().Result;
+                var repository = new StaffRepository(context);
+                var result = repository.All().Result;
 
                 result.Count.ShouldBe(2);
 

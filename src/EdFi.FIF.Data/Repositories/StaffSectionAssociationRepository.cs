@@ -8,7 +8,6 @@ using EdFi.FIF.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace EdFi.FIF.Data.Repositories

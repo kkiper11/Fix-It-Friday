@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace EdFi.FIF.Data.Tests.Repositories
 {
-    public class StudentSectionRepositoryTests : FIFRepositoryTest
+    public class StudentSectionRepositoryTests : FIFRepositoryTest, IDisposable
     {
         private readonly DbConnection _connection;
 
@@ -32,13 +32,15 @@ namespace EdFi.FIF.Data.Tests.Repositories
             return connection;
         }
 
+        public void Dispose() => _connection.Dispose();
+
         [Test]
         public void Get_studentSections_returns_studentSections()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StudentSectionRepository(context);
-                var result = _repository.All().Result;
+                var repository = new StudentSectionRepository(context);
+                var result = repository.All().Result;
 
                 result.Count.ShouldBe(3);
 
@@ -85,8 +87,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StudentSectionRepository(context);
-                var result = _repository.Get("1-1").Result;
+                var repository = new StudentSectionRepository(context);
+                var result = repository.Get("1-1").Result;
 
                 result.ShouldSatisfyAllConditions(
                     () => result.StudentSectionKey.ShouldBe("1-1"),
@@ -107,8 +109,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StudentSectionRepository(context);
-                var result = _repository.Get("1-999").Result;
+                var repository = new StudentSectionRepository(context);
+                var result = repository.Get("1-999").Result;
 
                 result.ShouldBeNull();
             }
@@ -119,8 +121,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StudentSectionRepository(context);
-                var result = _repository.GetByStudent("2-1").Result;
+                var repository = new StudentSectionRepository(context);
+                var result = repository.GetByStudent("2-1").Result;
 
                 result.Count.ShouldBe(2);
 
@@ -155,8 +157,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StudentSectionRepository(context);
-                var result = _repository.GetBySection("2").Result;
+                var repository = new StudentSectionRepository(context);
+                var result = repository.GetBySection("2").Result;
 
                 result.Count.ShouldBe(1);
 
