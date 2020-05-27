@@ -3,16 +3,16 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { TeacherClassType } from './types/TeacherClassType';
+import { TeacherClassArrayType } from './types/TeacherClassArrayType';
 
 type PageHeaderProps = {
   TeacherName: string;
-  TeacherClass: TeacherClassType[];
+  TeacherClass: TeacherClassArrayType[];
   onClassChange?(value: string): void;
 };
 
 const PageHeader: React.FunctionComponent<PageHeaderProps> = ({ TeacherName, TeacherClass, onClassChange }) => {
-  const Options = TeacherClass.map((teacherClass) => (
+  const Options = TeacherClass.map(({ section: teacherClass }) => (
     <option value={teacherClass.sectionkey} key={teacherClass.sectionkey}>
       {teacherClass.schoolyear} - {teacherClass.sessionname}
     </option>
