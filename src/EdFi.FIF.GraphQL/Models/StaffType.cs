@@ -23,7 +23,7 @@ namespace EdFi.FIF.GraphQL.Models
             Field("staffuniqueid", x => x.StaffUniqueId);
             Field<ListGraphType<SectionType>>("sections",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
-                resolve: context => contextServiceLocator.SectionRepository.GetBySectionList(contextServiceLocator.StaffSectionAssociationRepository.GetByStaff(context.Source.StaffKey).Result.ToList()), description: "Staff sections");
+                resolve: context => contextServiceLocator.SectionRepository.GetBySectionList(contextServiceLocator.StaffSectionAssociationRepository.GetByStaff(context.Source.StaffKey).Result), description: "Staff sections");
         }
     }
 }

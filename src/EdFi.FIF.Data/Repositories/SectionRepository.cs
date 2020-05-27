@@ -31,7 +31,7 @@ namespace EdFi.FIF.Data.Repositories
             return await _db.Sections.FirstOrDefaultAsync(p => p.SectionKey == sectionKey);
         }
 
-        public async Task<IReadOnlyList<Section>> GetBySectionList(List<StaffSectionAssociation> staffSectionAssociations)
+        public async Task<IReadOnlyList<Section>> GetBySectionList(IReadOnlyList<StaffSectionAssociation> staffSectionAssociations)
         {
             return await _db.Sections.Where(x => staffSectionAssociations.Select(p => p.SectionKey).Contains(x.SectionKey)).OrderBy(x => x.SectionKey).ToListAsync();
         }

@@ -13,6 +13,6 @@ namespace EdFi.FIF.Core.Data
     {
         Task<IReadOnlyList<Section>> All();
         Task<Section> Get(string sectionKey);
-        Task<IReadOnlyList<Section>> GetBySectionList(List<StaffSectionAssociation> staffSectionAssociations);
+        Task<IReadOnlyList<Section>> GetBySectionList(IReadOnlyList<StaffSectionAssociation> staffSectionAssociations);
     }
 }
