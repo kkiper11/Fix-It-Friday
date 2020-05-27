@@ -8,5 +8,6 @@ namespace EdFi.FIF.Core.Data
     {
         Task<List<Section>> All();
         Task<Section> Get(string sectionKey);
+        Task<List<Section>> GetBySectionList(List<StaffSectionAssociation> staffSectionAssociations);
     }
 }

@@ -15,10 +15,10 @@ namespace EdFi.FIF.GraphQL.Models
             Field("middlename", x => x.MiddleName);
             Field("lastsurname", x => x.LastSurname);
             Field("staffuniqueid", x => x.StaffUniqueId);
-            Field<ListGraphType<StaffSectionAssociationType>>("sections",
+           
+            Field<ListGraphType<SectionType>>("sections",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
-                resolve: context => contextServiceLocator.StaffSectionAssociationRepository.GetByStaff(context.Source.StaffKey), description: "Staff section association");
-            
+                resolve : context =>  contextServiceLocator.SectionRepository.GetBySectionList(contextServiceLocator.StaffSectionAssociationRepository.GetByStaff(context.Source.StaffKey).Result), description: "Staff sections");
         }
     }
 }

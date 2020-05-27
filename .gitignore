@@ -26,3 +26,15 @@ yarn-error.log*
 
 # TeamCity
 .teamcity/target/
+
+.vs/
+*.settings
+packages/
+*.user
+publish/
+*~
+node_modules/
+*.pdf
+launchSettings.json
+.vscode/
+tempkey.rsa
