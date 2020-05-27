@@ -20,6 +20,5 @@ namespace EdFi.FIF.Core.Models
         public string PreferredContactMethod { get; set; }
         public string BestTimeToContact { get; set; }
         public string ContactNotes { get; set; }
-        public ICollection<StudentContact> StudentContacts { get; set; }
     }
 }

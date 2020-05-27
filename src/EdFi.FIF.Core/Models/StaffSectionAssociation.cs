@@ -8,9 +8,5 @@ namespace EdFi.FIF.Core.Models
         public string SectionKey { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
-
-        public Staff Staff { get; set; }
-
-        public Section Section { get; set; }
     }
 }

@@ -43,11 +43,11 @@ namespace EdFi.FIF.Data.Tests.Repositories
 
                 result.ShouldSatisfyAllConditions(
                     () => result.ElementAt(0).StudentSchoolKey.ShouldBe("1-1"),
-                            () => result.ElementAt(0).ContactPersonKey.ShouldBe("1"));
+                            () => result.ElementAt(0).ContactPersonKey.ShouldBe("2"));
 
                 result.ShouldSatisfyAllConditions(
                     () => result.ElementAt(1).StudentSchoolKey.ShouldBe("1-1"),
-                            () => result.ElementAt(1).ContactPersonKey.ShouldBe("2"));
+                            () => result.ElementAt(1).ContactPersonKey.ShouldBe("1"));
 
                 result.ShouldSatisfyAllConditions(
                     () => result.ElementAt(2).StudentSchoolKey.ShouldBe("2-1"),

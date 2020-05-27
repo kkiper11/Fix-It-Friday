@@ -38,7 +38,7 @@ namespace EdFi.FIF.Data.Tests.Repositories
             using (var context = new FIFContext(ContextOptions))
             {
                 var _repository = new StudentSectionRepository(context);
-                var result = _repository.All().Result;
+                var result = _repository.All().Result.OrderBy(x => x.StudentSectionKey).ToList();
 
                 result.Count.ShouldBe(3);
 
