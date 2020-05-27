@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace EdFi.FIF.Data.Tests.Repositories
 {
-    public class StaffSectionAssociationTests : FIFRepositoryConfiguration
+    public class StaffSectionAssociationTests : FIFRepositoryConfiguration, IDisposable
     {
         private readonly DbConnection _connection;
 
@@ -32,13 +32,15 @@ namespace EdFi.FIF.Data.Tests.Repositories
             return connection;
         }
 
+        public void Dispose() => _connection.Dispose();
+
         [Test]
         public void Get_staffSectionAssociation()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.GetBySection("1").Result;
+                var repository = new StaffSectionAssociationRepository(context);
+                var result = repository.GetBySection("1").Result;
 
                 result.ShouldSatisfyAllConditions(
                     () => result.ElementAt(0).SectionKey.ShouldBe("1"),
@@ -53,8 +55,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.All().Result;
+                var repository = new StaffSectionAssociationRepository(context);
+                var result = repository.All().Result;
 
                 result.Count.ShouldBe(4);
 
@@ -89,8 +91,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.GetByStaff(1).Result;
+                var repository = new StaffSectionAssociationRepository(context);
+                var result = repository.GetByStaff(1).Result;
 
                 result.Count.ShouldBe(2);
 

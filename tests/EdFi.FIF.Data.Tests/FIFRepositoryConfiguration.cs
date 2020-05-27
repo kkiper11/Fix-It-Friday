@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+// ReSharper disable InconsistentNaming
 
 namespace EdFi.FIF.Data.Tests
 {

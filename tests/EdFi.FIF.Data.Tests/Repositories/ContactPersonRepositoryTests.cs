@@ -1,4 +1,5 @@
-﻿using EdFi.FIF.Data.Repositories;
+﻿using System;
+using EdFi.FIF.Data.Repositories;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -9,7 +10,7 @@ using System.Linq;
 
 namespace EdFi.FIF.Data.Tests.Repositories
 {
-    public class ContactPersonRepositoryTests : FIFRepositoryConfiguration
+    public class ContactPersonRepositoryTests : FIFRepositoryConfiguration, IDisposable
     {
         private readonly DbConnection _connection;
 
@@ -31,13 +32,15 @@ namespace EdFi.FIF.Data.Tests.Repositories
             return connection;
         }
 
+        public void Dispose() => _connection.Dispose();
+
         [Test]
         public void Get_ContactPersons_returns_ContactPersons()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new ContactPersonRepository(context);
-                var result = _repository.All().Result;
+                var repository = new ContactPersonRepository(context);
+                var result = repository.All().Result;
 
                 result.Count.ShouldBe(3);
 
@@ -102,8 +105,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new ContactPersonRepository(context);
-                var result = _repository.Get("1").Result;
+                var repository = new ContactPersonRepository(context);
+                var result = repository.Get("1").Result;
 
                 result.ShouldSatisfyAllConditions(
                     () => result.UniqueKey.ShouldBe("1"),
@@ -130,8 +133,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new ContactPersonRepository(context);
-                var result = _repository.Get("999").Result;
+                var repository = new ContactPersonRepository(context);
+                var result = repository.Get("999").Result;
 
                 result.ShouldBeNull();
             }
@@ -142,8 +145,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new ContactPersonRepository(context);
-                var result = _repository.GetFirstContactByStudent("1").Result;
+                var repository = new ContactPersonRepository(context);
+                var result = repository.GetFirstContactByStudent("1").Result;
 
                 result.ShouldSatisfyAllConditions(
                     () => result.UniqueKey.ShouldBe("1"),
@@ -170,8 +173,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new ContactPersonRepository(context);
-                var result = _repository.GetByContactOtherStudents("2", "1").Result;
+                var repository = new ContactPersonRepository(context);
+                var result = repository.GetByContactOtherStudents("2", "1").Result;
 
                 result.Count.ShouldBe(1);
 
