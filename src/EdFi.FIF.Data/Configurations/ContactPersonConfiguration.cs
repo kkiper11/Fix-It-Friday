@@ -14,6 +14,7 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<ContactPerson> builder)
         {
             builder.HasKey(s => s.UniqueKey);
+            builder.ToTable("ContactPerson".ToLower());
         }
     }
 }

@@ -14,6 +14,7 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<Staff> builder)
         {
             builder.HasKey(s => s.StaffKey);
+            builder.ToTable("Staff".ToLower());
         }
     }
 }

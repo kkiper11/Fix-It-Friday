@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace EdFi.FIF.Data.Tests.Repositories
 {
-    public class SectionRepositoryTests : FIFRepositoryTest
+    public class SectionRepositoryTests : FIFRepositoryConfiguration
     {
         private readonly DbConnection _connection;
 

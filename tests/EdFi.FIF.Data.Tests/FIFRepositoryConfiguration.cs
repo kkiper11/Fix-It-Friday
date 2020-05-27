@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace EdFi.FIF.Data.Tests
 {
-    public class FIFRepositoryTest
+    public class FIFRepositoryConfiguration
     {
-        protected FIFRepositoryTest(DbContextOptions<FIFContext> contextOptions)
+        protected FIFRepositoryConfiguration(DbContextOptions<FIFContext> contextOptions)
         {
             ContextOptions = contextOptions;
 

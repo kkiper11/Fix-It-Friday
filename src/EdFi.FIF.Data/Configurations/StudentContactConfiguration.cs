@@ -14,6 +14,7 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<StudentContact> builder)
         {
             builder.HasKey(s => new { s.StudentSchoolKey, s.ContactPersonKey });
+            builder.ToTable("StudentContact".ToLower());
         }
     }
 }

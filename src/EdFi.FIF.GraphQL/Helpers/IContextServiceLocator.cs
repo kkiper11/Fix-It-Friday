@@ -5,8 +5,8 @@
 
 namespace EdFi.FIF.GraphQL.Helpers
 {
-    public class AppSettings
+    public interface IContextServiceLocator
     {
-        //public string Secret { get; set; }
+        
     }
 }

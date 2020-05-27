@@ -1,4 +1,9 @@
-﻿using System;
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +39,7 @@ namespace EdFi.FIF.GraphQL.Controllers
         }*/
 
         [HttpPost]
-        public async Task<string> Post([FromBody] GraphQLQuery query)
+        public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
         {
             if (query == null) { throw new ArgumentNullException(nameof(query)); }
             var inputs = query.Variables.ToInputs();
@@ -52,10 +57,10 @@ namespace EdFi.FIF.GraphQL.Controllers
             var objectResult = Write(result);
 
             watch.Stop();
-
+            
             //log.Info($"{Environment.NewLine}{query.Query.ToString()}{Environment.NewLine} executed in {watch.ElapsedMilliseconds} ms");
 
-            return objectResult;
+            return Ok(objectResult);
         }
         private string Write(ExecutionResult result)
         {

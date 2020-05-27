@@ -14,6 +14,7 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<Section> builder)
         {
             builder.HasKey(s => s.SectionKey);
+            builder.ToTable("Section".ToLower());
         }
     }
 }

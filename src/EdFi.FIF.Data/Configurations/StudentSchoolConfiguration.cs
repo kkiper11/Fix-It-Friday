@@ -14,6 +14,7 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<StudentSchool> builder)
         {
             builder.HasKey(s => s.StudentSchoolKey);
+            builder.ToTable("StudentSchool".ToLower());
         }
     }
 }

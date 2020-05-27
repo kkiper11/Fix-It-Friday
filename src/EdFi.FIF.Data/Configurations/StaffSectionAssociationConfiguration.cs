@@ -14,6 +14,7 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<StaffSectionAssociation> builder)
         {
             builder.HasKey(s => new { s.StaffKey, s.SectionKey });
+            builder.ToTable("StaffSectionAssociation".ToLower());
         }
     }
 }
