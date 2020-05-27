@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
 using EdFi.FIF.Core.Data;
 using EdFi.FIF.Core.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EdFi.FIF.Data.Repositories
 {
@@ -16,24 +21,24 @@ namespace EdFi.FIF.Data.Repositories
             _db = db;
         }
 
-        public async Task<List<StudentSection>> All()
+        public async Task<IReadOnlyList<StudentSection>> All()
         {
-            return await _db.StudentSections.AsNoTracking().ToListAsync();
+            return await _db.StudentSections.OrderBy(x => x.StudentSectionKey).ToListAsync();
         }
 
         public async Task<StudentSection> Get(string studentSectionKey)
         {
-            return await _db.StudentSections.AsNoTracking().FirstOrDefaultAsync(p => p.StudentSectionKey == studentSectionKey);
+            return await _db.StudentSections.FirstOrDefaultAsync(p => p.StudentSectionKey == studentSectionKey);
         }
 
-        public async Task<List<StudentSection>> GetByStudent(string studentKey)
+        public async Task<IReadOnlyList<StudentSection>> GetByStudent(string studentKey)
         {
-            return await _db.StudentSections.AsNoTracking().Where(p => p.StudentSchoolKey == studentKey).ToListAsync();
+            return await _db.StudentSections.Where(p => p.StudentSchoolKey == studentKey).OrderBy(x => x.StudentSectionKey).ToListAsync();
         }
 
-        public async Task<List<StudentSection>> GetBySection(string sectionKey)
+        public async Task<IReadOnlyList<StudentSection>> GetBySection(string sectionKey)
         {
-            return await _db.StudentSections.AsNoTracking().Where(p => p.SectionKey == sectionKey).ToListAsync();
+            return await _db.StudentSections.Where(p => p.SectionKey == sectionKey).OrderBy(x => x.StudentSectionKey).ToListAsync();
         }
     }
 }

@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
 using EdFi.FIF.Core.Data;
 using EdFi.FIF.Core.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EdFi.FIF.Data.Repositories
 {
@@ -15,21 +20,21 @@ namespace EdFi.FIF.Data.Repositories
         {
             _db = db;
         }
-        public async Task<List<StudentContact>> All()
+        public async Task<IReadOnlyList<StudentContact>> All()
         {
-            return await _db.StudentContacts.AsNoTracking().ToListAsync();
+            return await _db.StudentContacts.OrderBy(x => x.StudentSchoolKey).ThenBy(x => x.ContactPersonKey).ToListAsync();
         }
         public async Task<StudentContact> Get(string studentKey, string contactKey)
         {
-            return await _db.StudentContacts.AsNoTracking().FirstOrDefaultAsync(p => p.StudentSchoolKey == studentKey && p.ContactPersonKey == contactKey);
+            return await _db.StudentContacts.FirstOrDefaultAsync(p => p.StudentSchoolKey == studentKey && p.ContactPersonKey == contactKey);
         }
-        public async Task<List<StudentContact>> GetByStudent(string studentKey)
+        public async Task<IReadOnlyList<StudentContact>> GetByStudent(string studentKey)
         {
-            return await _db.StudentContacts.AsNoTracking().Where(p => p.StudentSchoolKey == studentKey).ToListAsync();
+            return await _db.StudentContacts.Where(p => p.StudentSchoolKey == studentKey).OrderBy(x => x.StudentSchoolKey).ThenBy(x => x.ContactPersonKey).ToListAsync();
         }
-        public async Task<List<StudentContact>> GetByContact(string contactKey)
+        public async Task<IReadOnlyList<StudentContact>> GetByContact(string contactKey)
         {
-            return await _db.StudentContacts.AsNoTracking().Where(p => p.ContactPersonKey == contactKey).ToListAsync();
+            return await _db.StudentContacts.Where(p => p.ContactPersonKey == contactKey).OrderBy(x => x.StudentSchoolKey).ThenBy(x => x.ContactPersonKey).ToListAsync();
         }
     }
 }

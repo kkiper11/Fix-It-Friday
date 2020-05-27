@@ -1,4 +1,9 @@
-﻿using EdFi.FIF.Core.Models;
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+using EdFi.FIF.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,13 +14,6 @@ namespace EdFi.FIF.Data.Configurations
         public void Configure(EntityTypeBuilder<Staff> builder)
         {
             builder.HasKey(s => s.StaffKey);
-            builder.ToTable("Staff".ToLower());
-            builder.Property(s => s.StaffKey).HasColumnName("StaffKey".ToLower());
-            builder.Property(s => s.PersonalTitlePrefix).HasColumnName("PersonalTitlePrefix".ToLower());
-            builder.Property(s => s.FirstName).HasColumnName("FirstName".ToLower());
-            builder.Property(s => s.MiddleName).HasColumnName("MiddleName".ToLower());
-            builder.Property(s => s.LastSurname).HasColumnName("LastSurname".ToLower());
-            builder.Property(s => s.StaffUniqueId).HasColumnName("StaffUniqueId".ToLower());
         }
     }
 }

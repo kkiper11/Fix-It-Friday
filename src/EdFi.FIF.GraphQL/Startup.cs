@@ -1,16 +1,16 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using GraphQL;
-using GraphQL.Types;
 using EdFi.FIF.Core.Data;
 using EdFi.FIF.Data;
 using EdFi.FIF.Data.Repositories;
 using EdFi.FIF.GraphQL.Helpers;
 using EdFi.FIF.GraphQL.Models;
+using GraphQL;
+using GraphQL.Types;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace EdFi.FIF.GraphQL
 {
@@ -43,7 +43,11 @@ namespace EdFi.FIF.GraphQL
                 .AllowAnyHeader()));
             services.AddHttpContextAccessor();
             services.AddSingleton<ContextServiceLocator>();
-            services.AddDbContext<FIFContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:FIFDbSqlServer"]), ServiceLifetime.Transient);
+            services.AddDbContext<FIFContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionStrings:FIFDbSqlServer"]);
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }, ServiceLifetime.Transient);
             //Repositories
             services.AddTransient<IContactPersonRepository, ContactPersonRepository>();
             services.AddTransient<ISectionRepository, SectionRepository>();
@@ -52,7 +56,7 @@ namespace EdFi.FIF.GraphQL
             services.AddTransient<IStudentContactRepository, StudentContactRepository>();
             services.AddTransient<IStudentSchoolRepository, StudentSchoolRepository>();
             services.AddTransient<IStudentSectionRepository, StudentSectionRepository>();
-            
+
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             //GraphQL
             services.AddSingleton<FIFQuery>();
