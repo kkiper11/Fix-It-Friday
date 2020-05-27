@@ -1,15 +1,21 @@
-﻿using EdFi.FIF.Data.Repositories;
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+using EdFi.FIF.Data.Repositories;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using NUnit.Framework;
 using Shouldly;
+using System;
 using System.Data.Common;
 using System.Linq;
 
 namespace EdFi.FIF.Data.Tests.Repositories
 {
-    public class StaffRepositoryTests : FIFRepositoryTest
+    public class StaffRepositoryTests : FIFRepositoryConfiguration, IDisposable
     {
         private readonly DbConnection _connection;
 
@@ -31,13 +37,15 @@ namespace EdFi.FIF.Data.Tests.Repositories
             return connection;
         }
 
+        public void Dispose() => _connection.Dispose();
+
         [Test]
         public void Get_staff_by_key_returns_staff_when_it_exists()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffRepository(context);
-                var result = _repository.Get(1).Result;
+                var repository = new StaffRepository(context);
+                var result = repository.Get(1).Result;
 
                 result.ShouldSatisfyAllConditions(
                     () => result.StaffKey.ShouldBe(1),
@@ -50,12 +58,24 @@ namespace EdFi.FIF.Data.Tests.Repositories
         }
 
         [Test]
+        public void Get_staff_by_key_returns_null_when_it_does_not_exist()
+        {
+            using (var context = new FIFContext(ContextOptions))
+            {
+                var repository = new StaffRepository(context);
+                var result = repository.Get(999).Result;
+
+                result.ShouldBeNull();
+            }
+        }
+
+        [Test]
         public void Get_staff_returns_staff()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffRepository(context);
-                var result = _repository.All().Result;
+                var repository = new StaffRepository(context);
+                var result = repository.All().Result;
 
                 result.Count.ShouldBe(2);
 

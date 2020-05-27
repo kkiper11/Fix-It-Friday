@@ -1,11 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+      <TargetFramework>netcoreapp3.1</TargetFramework>
+      <IsPackable>true</IsPackable>
+      <RestorePackages>true</RestorePackages>
+      <Title>Ed-Fi Fix-It-Friday Core Business Logic - Tests</Title>
+      <Authors>Ed-Fi Alliance, LLC, and contributors</Authors>
+      <Copyright>(c) 2020, Ed-Fi Alliance, LLC, and contributors</Copyright>
+      <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+      <IncludeSymbols>true</IncludeSymbols>
+      <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+      <RepositoryUrl>https://github.com/Ed-Fi-Alliance-OSS/Fix-It-Friday</RepositoryUrl>
 
-    <IsPackable>false</IsPackable>
+      <IsPackable>false</IsPackable>
 
-    <UserSecretsId>985d19bc-6ffa-47e5-82c6-c86297fa2e0f</UserSecretsId>
+      <UserSecretsId>985d19bc-6ffa-47e5-82c6-c86297fa2e0f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,9 @@
-﻿using EdFi.FIF.Core.Models;
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+using EdFi.FIF.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,13 +15,6 @@ namespace EdFi.FIF.Data.Configurations
         {
             builder.HasKey(s => new { s.StaffKey, s.SectionKey });
             builder.ToTable("StaffSectionAssociation".ToLower());
-            builder.Property(s => s.StaffKey).HasColumnName("StaffKey".ToLower());
-            builder.Property(s => s.SectionKey).HasColumnName("SectionKey".ToLower());
-            builder.Property(s => s.BeginDate).HasColumnName("BeginDate".ToLower());
-            builder.Property(s => s.EndDate).HasColumnName("EndDate".ToLower());
-
-            builder.HasOne(s => s.Staff).WithMany(s => s.StaffSectionAssociations).HasForeignKey(s => s.StaffKey);
-            builder.HasOne(s => s.Section).WithMany(s => s.StaffSectionAssociations).HasForeignKey(s => s.SectionKey);
         }
     }
 }

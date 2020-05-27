@@ -1,4 +1,9 @@
-﻿using EdFi.FIF.Data.Repositories;
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+using EdFi.FIF.Data.Repositories;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -10,7 +15,7 @@ using System.Linq;
 
 namespace EdFi.FIF.Data.Tests.Repositories
 {
-    public class StaffSectionAssociationTests : FIFRepositoryTest
+    public class StaffSectionAssociationTests : FIFRepositoryConfiguration, IDisposable
     {
         private readonly DbConnection _connection;
 
@@ -32,13 +37,15 @@ namespace EdFi.FIF.Data.Tests.Repositories
             return connection;
         }
 
+        public void Dispose() => _connection.Dispose();
+
         [Test]
-        public void Get_staffSectionAssociationMMMM()
+        public void Get_staffSectionAssociation()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.GetBySection("1").Result;
+                var repository = new StaffSectionAssociationRepository(context);
+                var result = repository.GetBySection("1").Result;
 
                 result.ShouldSatisfyAllConditions(
                     () => result.ElementAt(0).SectionKey.ShouldBe("1"),
@@ -53,8 +60,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.All().Result;
+                var repository = new StaffSectionAssociationRepository(context);
+                var result = repository.All().Result;
 
                 result.Count.ShouldBe(4);
 
@@ -85,36 +92,12 @@ namespace EdFi.FIF.Data.Tests.Repositories
         }
 
         [Test]
-        public void Get_staffSectionAssociation_by_section_returns_staffSectionAssociation()
-        {
-            using (var context = new FIFContext(ContextOptions))
-            {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.GetBySection("2").Result;
-
-                result.Count.ShouldBe(2);
-
-                result.ShouldSatisfyAllConditions(
-                    () => result.ElementAt(0).SectionKey.ShouldBe("2"),
-                            () => result.ElementAt(0).StaffKey.ShouldBe(1),
-                            () => result.ElementAt(0).BeginDate.ShouldBe(new DateTime(2012, 01, 01)),
-                            () => result.ElementAt(0).EndDate.ShouldBeNull());
-
-                result.ShouldSatisfyAllConditions(
-                    () => result.ElementAt(1).SectionKey.ShouldBe("2"),
-                            () => result.ElementAt(1).StaffKey.ShouldBe(2),
-                            () => result.ElementAt(1).BeginDate.ShouldBe(new DateTime(2012, 01, 01)),
-                            () => result.ElementAt(1).EndDate.ShouldBeNull());
-            }
-        }
-
-        [Test]
         public void Get_staffSectionAssociation_by_staff_returns_staffSectionAssociation()
         {
             using (var context = new FIFContext(ContextOptions))
             {
-                var _repository = new StaffSectionAssociationRepository(context);
-                var result = _repository.GetByStaff(1).Result;
+                var repository = new StaffSectionAssociationRepository(context);
+                var result = repository.GetByStaff(1).Result;
 
                 result.Count.ShouldBe(2);
 
