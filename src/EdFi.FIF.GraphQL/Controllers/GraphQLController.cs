@@ -7,12 +7,14 @@ using GraphQL;
 using GraphQL.Types;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Cors;
 // ReSharper disable InconsistentNaming
 
 namespace EdFi.FIF.GraphQL.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("AllowPWAOrigin")]
     public class GraphQLController : ControllerBase
     {
         private readonly IDocumentExecuter _documentExecuter;
