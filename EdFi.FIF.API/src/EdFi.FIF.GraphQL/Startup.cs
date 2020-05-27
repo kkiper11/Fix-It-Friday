@@ -37,6 +37,10 @@ namespace EdFi.FIF.GraphQL
 
             services.AddMvcCore(option => option.EnableEndpointRouting = false)
                 .AddNewtonsoftJson();
+            services.AddCors(options => options.AddPolicy("AllowPWAOrigin", builder =>
+               builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()));
             services.AddHttpContextAccessor();
             services.AddSingleton<ContextServiceLocator>();
             services.AddDbContext<FIFContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:FIFDbSqlServer"]), ServiceLifetime.Transient);
@@ -83,6 +87,11 @@ namespace EdFi.FIF.GraphQL
             app.UseRouting();
 
             //app.UseAuthorization();
+            app.UseCors(options => options
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
 
             app.UseEndpoints(endpoints =>
             {
