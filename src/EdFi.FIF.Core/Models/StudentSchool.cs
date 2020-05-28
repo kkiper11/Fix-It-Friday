@@ -19,5 +19,6 @@ namespace EdFi.FIF.Core.Models
         public string LimitedEnglishProficiency { get; set; }
         public bool IsHispanic { get; set; }
         public string Sex { get; set; }
+        public string PictureURL { get; set; }
     }
 }

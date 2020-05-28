@@ -59,6 +59,7 @@ namespace EdFi.FIF.Data.Tests.Repositories
                             () => result.ElementAt(0).StudentLastName.ShouldBe("McCarthy"),
                             () => result.ElementAt(0).EnrollmentDateKey.ShouldBe("20120101"),
                             () => result.ElementAt(0).GradeLevel.ShouldBe("Ninth grade"),
+                            () => result.ElementAt(0).PictureURL.ShouldBe("Some url for the picture"),
                             () => result.ElementAt(0).LimitedEnglishProficiency.ShouldBeNull(),
                             () => result.ElementAt(0).IsHispanic.ShouldBe(false),
                             () => result.ElementAt(0).Sex.ShouldBeNull());
@@ -99,7 +100,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
                             () => result.GradeLevel.ShouldBe("Ninth grade"),
                             () => result.LimitedEnglishProficiency.ShouldBeNull(),
                             () => result.IsHispanic.ShouldBe(false),
-                            () => result.Sex.ShouldBeNull());
+                            () => result.Sex.ShouldBeNull(),
+                            () => result.PictureURL.ShouldBe("Some url for the picture"));
             }
         }
 
@@ -135,7 +137,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
                             () => result.GradeLevel.ShouldBe("Ninth grade"),
                             () => result.LimitedEnglishProficiency.ShouldBeNull(),
                             () => result.IsHispanic.ShouldBe(false),
-                            () => result.Sex.ShouldBeNull());
+                            () => result.Sex.ShouldBeNull(),
+                            () => result.PictureURL.ShouldBe("Some url for the picture"));
             }
         }
 
@@ -161,7 +164,8 @@ namespace EdFi.FIF.Data.Tests.Repositories
                             () => result.ElementAt(0).GradeLevel.ShouldBe("Ninth grade"),
                             () => result.ElementAt(0).LimitedEnglishProficiency.ShouldBeNull(),
                             () => result.ElementAt(0).IsHispanic.ShouldBe(false),
-                            () => result.ElementAt(0).Sex.ShouldBeNull());
+                            () => result.ElementAt(0).Sex.ShouldBeNull(),
+                            () => result.ElementAt(0).PictureURL.ShouldBe("Some url for the picture"));
 
                 result.ShouldSatisfyAllConditions(
                     () => result.ElementAt(1).StudentSchoolKey.ShouldBe("2-1"),

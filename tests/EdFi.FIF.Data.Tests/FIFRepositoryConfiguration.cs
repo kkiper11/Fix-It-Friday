@@ -100,7 +100,8 @@ namespace EdFi.FIF.Data.Tests
                         StudentFirstName = "Tommas",
                         StudentLastName = "McCarthy",
                         EnrollmentDateKey = "20120101",
-                        GradeLevel = "Ninth grade"
+                        GradeLevel = "Ninth grade",
+                        PictureURL = "Some url for the picture"
                     },
                     new StudentSchool()
                     {
