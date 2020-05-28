@@ -8,12 +8,10 @@ const GET_TEACHER_NAME_AND_SECTIONS = gql`
       middlename
       lastsurname
       sections {
-        section {
-          sectionkey
-          localcoursecode
-          sessionname
-          schoolyear
-        }
+        sectionkey
+        localcoursecode
+        sessionname
+        schoolyear
       }
     }
   }
