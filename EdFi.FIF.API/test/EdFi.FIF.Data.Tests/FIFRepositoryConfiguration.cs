@@ -27,6 +27,67 @@ namespace EdFi.FIF.Data.Tests
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
+                var contactPeople = new List<ContactPerson>()
+                {
+                    new ContactPerson()
+                    {
+                        UniqueKey = "1",
+                        ContactPersonKey = "1",
+                        StudentKey = "1",
+                        ContactFirstName = "David",
+                        ContactLastName = "Roberts",
+                        RelationshipToStudent = "Father",
+                        StreetNumberName = "384",
+                        State = "TX",
+                        PostalCode = "71357",
+                        ApartmentRoomSuiteNumber = "123",
+                        PhoneNumber = "123-123-7413",
+                        PrimaryEmailAddress = "droberts@gmail.com",
+                        IsPrimaryContact = true,
+                        PreferredContactMethod = "email",
+                        BestTimeToContact = "Any time in the morning",
+                        ContactNotes = "no notes"
+                    },
+                    new ContactPerson()
+                    {
+                        UniqueKey = "2",
+                        ContactPersonKey = "2",
+                        StudentKey = "1",
+                        ContactFirstName = "Casey",
+                        ContactLastName = "Johnson",
+                        RelationshipToStudent = "Mother",
+                        StreetNumberName = "384",
+                        State = "TX",
+                        PostalCode = "71357",
+                        ApartmentRoomSuiteNumber = "123",
+                        PhoneNumber = "123-123-7414",
+                        PrimaryEmailAddress = "cjohnson@gmail.com",
+                        IsPrimaryContact = false,
+                        PreferredContactMethod = "email",
+                        BestTimeToContact = "From 9am to 11am",
+                        ContactNotes = "Some notes."
+                    },
+                    new ContactPerson()
+                    {
+                        UniqueKey = "3",
+                        ContactPersonKey = "2",
+                        StudentKey = "2",
+                        ContactFirstName = "John",
+                        ContactLastName = "Simpson",
+                        RelationshipToStudent = "Brother",
+                        StreetNumberName = "385",
+                        State = "TX",
+                        PostalCode = "71356",
+                        ApartmentRoomSuiteNumber = "124",
+                        PhoneNumber = "123-123-8413",
+                        PrimaryEmailAddress = "jsimpson@gmail.com",
+                        IsPrimaryContact = true,
+                        PreferredContactMethod = "email",
+                        BestTimeToContact = "From 10am to 2pm",
+                        ContactNotes = "no notes"
+                    }
+                };
+
                 var studentSchools = new List<StudentSchool>()
                 {
                     new StudentSchool()
@@ -53,6 +114,25 @@ namespace EdFi.FIF.Data.Tests
                         GradeLevel = "Eighth grade",
                         IsHispanic = true,
                         Sex = "Male"
+                    }
+                };
+
+                var studentContacts = new List<StudentContact>()
+                {
+                    new StudentContact()
+                    {
+                        StudentSchoolKey = "1-1",
+                        ContactPersonKey = "1"
+                    },
+                    new StudentContact()
+                    {
+                        StudentSchoolKey = "1-1",
+                        ContactPersonKey = "2"
+                    },
+                    new StudentContact()
+                    {
+                        StudentSchoolKey = "2-1",
+                        ContactPersonKey = "2"
                     }
                 };
 
@@ -181,7 +261,9 @@ namespace EdFi.FIF.Data.Tests
                     }
                 };
 
+                context.AddRange(contactPeople);
                 context.AddRange(studentSchools);
+                context.AddRange(studentContacts);
                 context.AddRange(sections);
                 context.AddRange(staff);
                 context.AddRange(staffSectionAssociation);

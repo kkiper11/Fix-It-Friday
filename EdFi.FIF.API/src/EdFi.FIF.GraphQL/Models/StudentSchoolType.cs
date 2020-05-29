@@ -26,6 +26,10 @@ namespace EdFi.FIF.GraphQL.Models
             Field("ishispanic", x => x.IsHispanic);
             Field("sex", x => x.Sex);
             Field("pictureurl", x => x.PictureURL, nullable: true);
+
+            Field<ListGraphType<StudentContactType>>("contacts",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "studentschoolkey" }),
+                resolve: context => contextServiceLocator.StudentContactRepository.GetByStudent(context.Source.StudentKey), description: "Student contacts");
         }
     }
 }

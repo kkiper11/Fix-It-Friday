@@ -29,6 +29,12 @@ namespace EdFi.FIF.GraphQL.Models
                 resolve: (context) => contextServiceLocator.StudentSchoolRepository.Get(context.GetArgument<string>("studentschoolkey"))
             );
 
+            Field<ListGraphType<ContactPersonType>>(
+                "contactperson",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "uniquekey" }),
+                resolve: (context) => contextServiceLocator.ContactPersonRepository.Get(context.GetArgument<string>("uniquekey"))
+            );
+
             Field<StaffType>(
                 "sectionsbystaff",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "staffkey" }),
@@ -37,10 +43,8 @@ namespace EdFi.FIF.GraphQL.Models
 
             Field<ListGraphType<StudentSectionType>>(
                 "studentsbysection",
-                arguments: new QueryArguments(new QueryArgument<StringGraphType> {Name = "sectionkey"}),
-                resolve: (context) =>
-                    contextServiceLocator.StudentSectionRepository.GetBySection(
-                        context.GetArgument<string>("sectionkey"))
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "sectionkey" }),
+                resolve: (context) => contextServiceLocator.StudentSectionRepository.GetBySection(context.GetArgument<string>("sectionkey"))
             );
         }
     }
