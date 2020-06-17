@@ -1,6 +1,8 @@
 type Query{
   sections: [Section]
   section(sectionkey: ID!): Section
+  surveys: [Survey]
+  survey(surveykey: ID!): Survey
 }
 type Section{
   sectionkey: String
@@ -9,4 +11,28 @@ type Section{
   sessionname: String
   sectionidentifier: String
   schoolyear: Int
+}
+type Data {
+  question: String
+  answer: String
+}
+type Metadata {
+  timestamp: String
+  studentschoolkey: String
+}
+type Question {
+  question: String
+}
+type Answer {
+  metadata: Metadata
+  data: [Data]
+}
+type SurveyJson {
+  questions: [Question]
+  answers: [Answer]
+}
+type Survey{
+  surveykey: String
+  title: String
+  info: [SurveyJson]
 }

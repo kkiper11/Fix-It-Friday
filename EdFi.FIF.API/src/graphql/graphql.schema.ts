@@ -1,3 +1,4 @@
+
 /** ------------------------------------------------------
  * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
  * -------------------------------------------------------
@@ -9,6 +10,10 @@ export abstract class IQuery {
     abstract sections(): Section[] | Promise<Section[]>;
 
     abstract section(sectionkey: string): Section | Promise<Section>;
+
+    abstract surveys(): Survey[] | Promise<Survey[]>;
+
+    abstract survey(surveykey: string): Survey | Promise<Survey>;
 }
 
 export class Section {
@@ -18,4 +23,34 @@ export class Section {
     sessionname?: string;
     sectionidentifier?: string;
     schoolyear?: number;
+}
+
+export class Data {
+    question?: string;
+    answer?: string;
+}
+
+export class Metadata {
+    timestamp?: string;
+    studentschoolkey?: string;
+}
+
+export class Question {
+    question?: string;
+}
+
+export class Answer {
+    metadata?: Metadata;
+    data?: Data[];
+}
+
+export class SurveyJson {
+    questions?: Question[];
+    answers?: Answer[];
+}
+
+export class Survey {
+    surveykey?: string;
+    title?: string;
+    info?: SurveyJson[];
 }
