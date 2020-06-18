@@ -33,6 +33,8 @@ export class Data {
 export class Metadata {
     timestamp?: string;
     studentschoolkey?: string;
+    studentname?: string;
+    studentemail?: string;
 }
 
 export class Question {

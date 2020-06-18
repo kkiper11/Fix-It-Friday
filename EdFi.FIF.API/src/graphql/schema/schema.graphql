@@ -19,6 +19,8 @@ type Data {
 type Metadata {
   timestamp: String
   studentschoolkey: String
+  studentname: String
+  studentemail: String
 }
 type Question {
   question: String
