@@ -1,9 +1,25 @@
 {
+  "name": "edfi.fif.database",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Migration utility for the Ed-Fi Fix-it-Friday database running on PostgreSQL",
   "dependencies": {
     "db-migrate": "^0.11.11",
     "db-migrate-pg": "^1.2.2"
   },
   "scripts": {
-    "migrate": "db-migrate up"
+    "migrate": "db-migrate up",
+    "build:clean": "rimraf dist",
+    "build": "yarn build:clean && synp -s .\\yarn.lock && copyfiles package-lock.json package.json database.json migrations/**/* dist && del package-lock.json"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "copyfiles": "^2.3.0",
+    "execa": "^4.0.3",
+    "execution-time": "^1.4.1",
+    "globby": "^11.0.1",
+    "rimraf": "^3.0.2",
+    "sql-lint": "^0.0.14",
+    "synp": "^1.7.0"
   }
 }

@@ -8,7 +8,7 @@ package _self
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 
 object FixItFridayProject : Project({
-    description = "Projects Owned by the Analytics Team"
+    description = "Fix-it-Friday Build Configurations"
 
     params {
         param("build.feature.freeDiskSpace", "2gb")
@@ -25,6 +25,7 @@ object FixItFridayProject : Project({
     subProject(ui.UIProject)
     subProject(api.APIProject)
     subProject(angular.AngularProject)
+    subProject(database.DatabaseProject)
 
     template(_self.templates.BuildAndTestTemplate)
     template(_self.templates.PullRequestTemplate)
